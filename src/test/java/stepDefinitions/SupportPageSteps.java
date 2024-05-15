@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import pageObjects.DriverSupportPage;
 import pageObjects.HomePage;
 
@@ -28,4 +29,6 @@ public class SupportPageSteps {
 	public void iVerifyTheTextIsDisplayingOnThePage(String text) {
 		driverSupportPage.getSupportWidget().verifyTextIsOnThePage(text);
 	}
+
+
 }

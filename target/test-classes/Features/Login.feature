@@ -14,6 +14,12 @@ Feature: Login with Valid Credentials
     And I verify the text "Download the Jitsu Driver Training PDF" is displaying on the page
     And I click on "Download the Jitsu Driver Training PDF" and download file
 
+  @ApiTesting
+  Scenario: Verify the activity key returned is correct.
+    Given I get value of key "key" from request "http://www.boredapi.com/api/activity"
+    Then I verify the get request "http://www.boredapi.com/api/activity" with the parameter "key"
+
+
 
 
 
