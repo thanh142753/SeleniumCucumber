@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import io.cucumber.java.After;
@@ -14,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -59,7 +62,12 @@ public class BaseClass {
         } else if (getProperties().getProperty("execution_env").equalsIgnoreCase("local")) {
             switch (getProperties().getProperty("browser").toLowerCase()) {
                 case "chrome":
-                    driver = new ChromeDriver();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    Map<String, Object> prefs = new HashMap<String, Object>();
+                    prefs.put("download.default_directory", System.getProperty("user.dir") + "\\downloadFile");
+                    prefs.put("download.prompt_for_download", false);
+                    chromeOptions.setExperimentalOption("prefs", prefs);
+                    driver = new ChromeDriver(chromeOptions);
                     break;
                 case "edge":
                     driver = new EdgeDriver();
@@ -84,10 +92,6 @@ public class BaseClass {
 
     public WebDriver getDriver() {
         return driver;
-    }
-
-    public void setDriver(WebDriver webDriver) {
-        driver = webDriver;
     }
 
     public static Properties getProperties() throws IOException {
@@ -120,6 +124,8 @@ public class BaseClass {
         String num = RandomStringUtils.randomNumeric(10);
         return str + num;
     }
+
+
 
 
 }

@@ -21,8 +21,6 @@ public class Hooks {
     {
         baseClass.initializeBrowser();
     	p=BaseClass.getProperties();
-        System.out.println("Alo + " + p.getProperty("screenshot.dir"));
-        System.out.println(System.getProperty("appURL"));
         baseClass.getDriver().get(p.getProperty("appURL"));
         baseClass.getDriver().manage().window().maximize();
 	}

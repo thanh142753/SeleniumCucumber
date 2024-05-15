@@ -5,7 +5,7 @@ import pageObjects.HomePage;
 
 public class LoginSteps {
 
-     HomePage homePage2 = new HomePage();
+     HomePage homePage = new HomePage();
 
     public LoginSteps() {
     }
@@ -13,9 +13,13 @@ public class LoginSteps {
 
     @Given("the user navigates to login page")
     public void user_navigate_to_login_page() {
-        homePage2.getSearchWidget().enterProductName("vivo");
-        homePage2.getSearchWidget().clickSearch();
+        homePage.getSearchWidget().enterProductName("vivo");
+        homePage.getSearchWidget().clickSearch();
                    
     }
 
+    @Given("I am on the home page")
+    public void iAmOnTheHomePage() {
+        homePage.getHeaderWidget().verifyTheHomePageIsOpened();
+    }
 }
